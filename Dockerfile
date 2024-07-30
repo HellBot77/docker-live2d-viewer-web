@@ -13,6 +13,8 @@ FROM node:alpine AS build
 WORKDIR /live2d-viewer-web
 COPY --from=base /git/live2d-viewer-web .
 RUN yarn && \
+    node scripts/download.js && \
+    node scripts/parse.js && \
     export NODE_ENV=production && \
     yarn build
 
